@@ -50,3 +50,5 @@ const KerryTrip = () => {
     </div>
   );
 };
+
+export default KerryTrip;
