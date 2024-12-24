@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import { X } from "lucide-react";
 import KerryTrip from "../pages/KerryTrip";
+import { useNavigate } from "react-router-dom";
 
 const PageGrid = () => {
   const [selectedComponent, setSelectedComponent] = useState(null);
-
+  const navigate = useNavigate();
+  const onSelect = () => {
+    navigate("/kerry");
+  };
   const components = [
     {
       id: 1,
@@ -12,32 +16,32 @@ const PageGrid = () => {
       type: "component",
       preview: () => <KerryTrip />,
     },
-    {
-      id: 2,
-      name: "Image Preview",
-      type: "image",
-      preview: () => (
-        <img
-          src="/api/placeholder/400/300"
-          alt="placeholder"
-          className="w-full h-full object-cover rounded"
-        />
-      ),
-    },
-    {
-      id: 3,
-      name: "Alert",
-      type: "component",
-      preview: () => (
-        <div className="w-full h-full flex items-center justify-center bg-yellow-100 border-yellow-400 border rounded">
-          Alert Message
-        </div>
-      ),
-    },
+    // {
+    //   id: 2,
+    //   name: "Image Preview",
+    //   type: "image",
+    //   preview: () => (
+    //     <img
+    //       src="/api/placeholder/400/300"
+    //       alt="placeholder"
+    //       className="w-full h-full object-cover rounded"
+    //     />
+    //   ),
+    // },
+    // {
+    //   id: 3,
+    //   name: "Alert",
+    //   type: "component",
+    //   preview: () => (
+    //     <div className="w-full h-full flex items-center justify-center bg-yellow-100 border-yellow-400 border rounded">
+    //       Alert Message
+    //     </div>
+    //   ),
+    //},
   ];
 
   const Modal = ({ component, onClose }) => (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex">
       <div className="bg-white rounded-lg p-6 max-w-2xl w-full mx-4">
         <div className="flex justify-between items-center mb-2">
           <h2 className="text-xl font-bold">{component.name}</h2>
@@ -45,7 +49,7 @@ const PageGrid = () => {
             <X size={24} />
           </button>
         </div>
-        <div className="p-4 border rounded min-h-[300px] flex items-center justify-center">
+        <div className="p-4 border rounded min-h-[300px] flex items-start">
           {component.preview()}
         </div>
       </div>
@@ -58,23 +62,27 @@ const PageGrid = () => {
         {components.map((component) => (
           <button
             key={component.id}
-            onClick={() => setSelectedComponent(component)}
+            onClick={() => onSelect()}
             className="group relative bg-white border rounded-lg hover:shadow-lg transition-shadow overflow-hidden h-64"
           >
-            <div className="absolute inset-0 p-4">{component.preview()}</div>
+            <div className="absolute inset-0 p-4 items-start justify-left">
+              {component.preview()}
+            </div>
             <div className="absolute bottom-0 inset-x-0 bg-white bg-opacity-90 p-2 border-t">
-              <span className="text-md font-medium">{component.name}</span>
+              <span className="text-left text-sm font-medium">
+                {component.name}
+              </span>
             </div>
           </button>
         ))}
       </div>
 
-      {selectedComponent && (
+      {/* {selectedComponent && (
         <Modal
           component={selectedComponent}
           onClose={() => setSelectedComponent(null)}
         />
-      )}
+      )} */}
     </div>
   );
 };
