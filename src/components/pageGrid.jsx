@@ -79,4 +79,4 @@ const PageGrid = () => {
   );
 };
 
-export default ComponentGrid;
+export default PageGrid;
