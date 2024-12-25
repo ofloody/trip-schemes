@@ -21,12 +21,12 @@ const TripStop = ({ stop, onEdit, isEditing, onSave, onCancel }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <div className="border rounded-lg p-4 mb-4 shadow-sm hover:shadow-md transition-shadow">
+    <div className="bg-gray-50 border rounded-lg p-4 mb-4 shadow-sm hover:shadow-md transition-shadow">
       <div
         className="container flex items-left cursor-pointer"
         onClick={() => !isEditing && setIsExpanded(!isExpanded)}
       >
-        <div className="flex items-center gap-2">
+        <div className="flex items-center text-gray-700 gap-2">
           <b>
             {stop.from} → {stop.to}
           </b>
@@ -48,12 +48,19 @@ const TripStop = ({ stop, onEdit, isEditing, onSave, onCancel }) => {
         <div className="mt-4 pl-6">
           {isEditing ? (
             <div className="space-y-4">
-              <div>
-                <CarFront size={18} />
-                Driving Time
-                <input
-                  type="text"
-                  className="w-full p-2 border rounded"
+              <div className="p-6 bg-gray-50 rounded-lg shadow-md space-y-4">
+                <div className="flex items-center space-x-2">
+                  <CarFront size={16} className="text-blue-500 mr-2" />
+                  <label
+                    htmlFor="drive time"
+                    className="text-gray-700 font-medium"
+                  >
+                    Drive Time
+                  </label>
+                </div>
+                <textarea
+                  type="drive time"
+                  className="w-full p-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-700"
                   value={editedDetails.drivingTime}
                   onChange={(e) =>
                     setEditedDetails({
@@ -61,13 +68,20 @@ const TripStop = ({ stop, onEdit, isEditing, onSave, onCancel }) => {
                       drivingTime: e.target.value,
                     })
                   }
+                  rows={1}
                 />
               </div>
-              <div>
-                <Info size={16} />
-                Notes
+
+              <div className="p-6 bg-gray-50 rounded-lg shadow-md space-y-4">
+                <div className="flex items-center space-x-2">
+                  <Info size={16} className="text-green-500 mt-1" />
+                  <label htmlFor="notes" className="text-gray-700 font-medium">
+                    Notes
+                  </label>
+                </div>
                 <textarea
-                  className="w-full p-2 border rounded"
+                  id="notes"
+                  className="w-full p-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-700"
                   value={editedDetails.notes}
                   onChange={(e) =>
                     setEditedDetails({
@@ -76,15 +90,21 @@ const TripStop = ({ stop, onEdit, isEditing, onSave, onCancel }) => {
                     })
                   }
                   rows={3}
+                  placeholder="Write your notes here..."
                 />
               </div>
-              <div>
-                <label className="block text-sm font-medium mb-1">
-                  <NotebookPen size={16} />
-                  Description
-                </label>
+              <div className="p-6 bg-gray-50 rounded-lg shadow-md space-y-4">
+                <div className="flex items-center space-x-2">
+                  <NotebookPen size={16} className="text-purple-500 mt-1" />
+                  <label
+                    htmlFor="description"
+                    className="text-gray-700 font-medium"
+                  >
+                    Description
+                  </label>
+                </div>
                 <textarea
-                  className="w-full p-2 border rounded"
+                  className="w-full p-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-700"
                   value={editedDetails.description}
                   onChange={(e) =>
                     setEditedDetails({
@@ -95,7 +115,7 @@ const TripStop = ({ stop, onEdit, isEditing, onSave, onCancel }) => {
                   rows={3}
                 />
               </div>
-              <div className="flex gap-2">
+              <div className="flex gap-2 p-4 m-4">
                 <button
                   className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
                   onClick={() => onSave(editedDetails)}
@@ -111,23 +131,25 @@ const TripStop = ({ stop, onEdit, isEditing, onSave, onCancel }) => {
               </div>
             </div>
           ) : (
-            <div className="space-y-2">
-              <div className="flex items-center px-3 py-2">
-                <CarFront size={18} />
-                Driving Time: {stop.drivingTime}
+            <div className="space-y-4 bg-gray-50 p-6 rounded-lg shadow-md">
+              <div className="flex items-center p-4  border-gray-200">
+                <CarFront size={16} className="text-blue-500 mr-2" />
+                <span className="text-gray-800 font-medium">
+                  Driving Time: {stop.drivingTime}
+                </span>
               </div>
 
               {stop.notes && (
-                <div className="text-gray-600">
-                  <Info size={16} />
-                  {stop.notes}
+                <div className="text-gray-700 px-4 py-3 border border-gray-300 rounded-md bg-gray-100 flex items-start gap-2">
+                  <Info size={16} className="text-green-500 mt-1" />
+                  <span>{stop.notes}</span>
                 </div>
               )}
 
               {isExpanded && stop.description && (
-                <div className="text-gray-600">
-                  <NotebookPen size={16} />
-                  {stop.description}
+                <div className="text-gray-700 px-4 py-3 border border-gray-300 rounded-md bg-gray-100 flex items-start gap-2">
+                  <NotebookPen size={20} className="text-purple-500 mt-1" />
+                  <span>{stop.description}</span>
                 </div>
               )}
             </div>
@@ -219,8 +241,8 @@ const KerryTrip = () => {
   };
 
   return (
-    <div className="p-8 max-w-6xl mx-auto">
-      <h1 className="text-3xl font-bold mb-8">Kerry Trip</h1>
+    <div className="p-8 max-w-6xl mx-auto bg-gray-50">
+      <h1 className="text-3xl font-bold mb-8 text-gray-700">Kerry Trip</h1>
 
       <div className="mb-12">
         <div
@@ -247,7 +269,7 @@ const KerryTrip = () => {
         <h2 className="text-2xl font-bold mb-6">Itinerary</h2>
 
         <div className="mb-8">
-          <h3 className="text-xl font-semibold mb-4">
+          <h3 className="text-xl font-semibold mb-4 text-gray-700">
             Day 1: Travel to Kerry and Explore the Dingle Peninsula
           </h3>
           {stops.slice(0, 4).map((stop) => (
@@ -263,7 +285,7 @@ const KerryTrip = () => {
         </div>
 
         <div className="mb-8">
-          <h3 className="text-xl font-semibold mb-4">
+          <h3 className="text-xl font-semibold mb-4 text-gray-700">
             Day 2: Explore Beaches or Killarney and Return to Mayo
           </h3>
           {stops.slice(4).map((stop) => (
@@ -278,7 +300,7 @@ const KerryTrip = () => {
           ))}
         </div>
 
-        <div className="bg-gray-50 p-6 rounded-lg">
+        <div className="bg-gray-50 p-6 rounded-lg text-gray-700 border rounded-lg p-4 mb-4 shadow-sm hover:shadow-md transition-shadow">
           <h3 className="text-xl font-semibold mb-4">Total Driving Times</h3>
           <div className="space-y-2">
             <div>Day 1 Driving Time: ~5 hours 35 minutes</div>

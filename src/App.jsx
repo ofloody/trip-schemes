@@ -10,7 +10,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div>
+      <div className="bg-gray-50 flex">
         <img src={mapLogo} className="logo map" alt="Map logo" />
       </div>
       <Routes>
