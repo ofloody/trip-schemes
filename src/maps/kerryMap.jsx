@@ -57,7 +57,6 @@ const KerryMap = () => {
         sticky: true,
       });
     });
-    locations_day2;
 
     // Create route polyline
     const routeCoords = locations.map((loc) => loc.pos);

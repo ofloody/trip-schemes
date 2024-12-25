@@ -2,12 +2,17 @@ import React, { useState } from "react";
 import { X } from "lucide-react";
 import KerryTrip from "../pages/KerryTrip";
 import { useNavigate } from "react-router-dom";
+import DerryTrip from "../pages/DerryTrip";
 
 const PageGrid = () => {
   const [selectedComponent, setSelectedComponent] = useState(null);
   const navigate = useNavigate();
-  const onSelect = () => {
-    navigate("/kerry");
+  const onSelect = (id) => {
+    if (id == 1) {
+      navigate("/kerry");
+    } else {
+      navigate("/derry");
+    }
   };
   const components = [
     {
@@ -15,6 +20,12 @@ const PageGrid = () => {
       name: "Kerry",
       type: "component",
       preview: () => <KerryTrip />,
+    },
+    {
+      id: 2,
+      name: "Derry",
+      type: "component",
+      preview: () => <DerryTrip />,
     },
     // {
     //   id: 2,
@@ -40,35 +51,35 @@ const PageGrid = () => {
     //},
   ];
 
-  const Modal = ({ component, onClose }) => (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex">
-      <div className="bg-white rounded-lg p-6 max-w-2xl w-full mx-4">
-        <div className="flex justify-between items-center mb-2">
-          <h2 className="text-xl font-bold">{component.name}</h2>
-          <button onClick={onClose} className="p-1 hover:bg-gray-100 rounded">
-            <X size={24} />
-          </button>
-        </div>
-        <div className="p-4 border rounded min-h-[300px] flex items-start">
-          {component.preview()}
-        </div>
-      </div>
-    </div>
-  );
+  // const Modal = ({ component, onClose }) => (
+  //   <div className="fixed inset-0 bg-black bg-opacity-50 flex">
+  //     <div className="bg-white rounded-lg p-6 max-w-2xl w-full mx-4">
+  //       <div className="flex justify-between items-center mb-2">
+  //         <h2 className="text-xl font-bold">{component.name}</h2>
+  //         <button onClick={onClose} className="p-1 hover:bg-gray-100 rounded">
+  //           <X size={24} />
+  //         </button>
+  //       </div>
+  //       <div className="p-4 border rounded min-h-[300px] flex items-start">
+  //         {component.preview()}
+  //       </div>
+  //     </div>
+  //   </div>
+  // );
 
   return (
     <div className="p-8">
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid flex sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {components.map((component) => (
           <button
             key={component.id}
-            onClick={() => onSelect()}
+            onClick={() => onSelect(component.id)}
             className="group relative bg-white border rounded-lg hover:shadow-lg transition-shadow overflow-hidden h-64"
           >
-            <div className="absolute inset-0 p-4 items-start justify-left">
+            <div className="m-4 p-4 items-start justify-left">
               {component.preview()}
             </div>
-            <div className="absolute bottom-0 inset-x-0 bg-white bg-opacity-90 p-2 border-t">
+            <div className="bg-white bg-opacity-90 p-2">
               <span className="text-left text-sm font-medium">
                 {component.name}
               </span>

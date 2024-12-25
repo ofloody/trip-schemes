@@ -14,8 +14,10 @@
     "leaflet": "^1.9.4",
     "leaflet.awesome-markers": "^2.0.5",
     "lucide-react": "^0.469.0",
+    "mongodb": "^6.12.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-leaflet": "^5.0.0",
     "react-router-dom": "^6.28.1"
   },
   "devDependencies": {
