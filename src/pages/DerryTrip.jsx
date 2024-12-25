@@ -128,7 +128,7 @@ const DerryTrip = () => {
           textAlign: "left",
         }}
       >
-        <h2 className="text-2xl font-bold mb-6">Itinerary</h2>
+        <h2 className="text-2xl text-gray-800 font-bold mb-6">Itinerary</h2>
 
         <div className="mb-8">
           <h3 className="text-xl font-semibold mb-4 text-gray-700">
