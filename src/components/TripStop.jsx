@@ -20,7 +20,7 @@ const TripStop = ({ stop, onEdit, isEditing, onSave, onCancel }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <div className="bg-gray-50 border rounded-lg p-4 mb-4 shadow-sm hover:shadow-md transition-shadow">
+    <div className="bg-white border rounded-lg p-4 mb-4 shadow-sm hover:shadow-md transition-shadow">
       <div
         className="container flex items-left cursor-pointer"
         onClick={() => !isEditing && setIsExpanded(!isExpanded)}
@@ -47,7 +47,7 @@ const TripStop = ({ stop, onEdit, isEditing, onSave, onCancel }) => {
         <div className="mt-4 pl-6">
           {isEditing ? (
             <div className="space-y-4">
-              <div className="p-6 bg-gray-50 rounded-lg shadow-md space-y-4">
+              <div className="p-6 bg-white rounded-lg shadow-md space-y-4">
                 <div className="flex items-center space-x-2">
                   <CarFront size={16} className="text-blue-500 mr-2" />
                   <label
@@ -59,7 +59,7 @@ const TripStop = ({ stop, onEdit, isEditing, onSave, onCancel }) => {
                 </div>
                 <textarea
                   type="drive time"
-                  className="w-full p-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-700"
+                  className="w-full p-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-700"
                   value={editedDetails.drivingTime}
                   onChange={(e) =>
                     setEditedDetails({
@@ -131,7 +131,7 @@ const TripStop = ({ stop, onEdit, isEditing, onSave, onCancel }) => {
               </div>
             </div>
           ) : (
-            <div className="space-y-4 bg-gray-50 p-6 rounded-lg shadow-md">
+            <div className="space-y-4 bg-white p-6 rounded-lg shadow-md">
               <div className="flex items-center p-4  border-gray-200">
                 <CarFront size={16} className="text-blue-500 mr-2" />
                 <span className="text-gray-800 font-medium">

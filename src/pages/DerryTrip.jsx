@@ -1,8 +1,11 @@
 import { useState } from "react";
 import DerryMap from "../maps/derryMap";
 import TripStop from "../components/TripStop";
+import { useNavigate } from "react-router-dom";
+import mapLogo from "../assets/treasure-map.svg";
 
 const DerryTrip = () => {
+  const navigate = useNavigate();
   const [stops, setStops] = useState([
     {
       id: 1,
@@ -90,7 +93,17 @@ const DerryTrip = () => {
   };
 
   return (
-    <div className="p-8 max-w-6xl mx-auto bg-gray-50">
+    <div className="p-8 mx-auto bg-white">
+      <div className="flex justify-center">
+        <button
+          key={"home-map"}
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          <img src={mapLogo} className="logo map" alt="Map logo" />
+        </button>
+      </div>
       <h1 className="text-3xl font-bold mb-8 text-gray-700">Derry Trip</h1>
 
       <div className="mb-12">
@@ -100,8 +113,8 @@ const DerryTrip = () => {
             display: "flex",
             alignContent: "center",
             margin: "auto",
-            height: "500px",
-            width: "800px",
+            height: "60vh",
+            width: "60vw",
           }}
         >
           <DerryMap />
@@ -109,7 +122,7 @@ const DerryTrip = () => {
       </div>
 
       <div
-        className="container"
+        className="container p-8 m-4 bg-gray-50"
         style={{
           display: "block",
           textAlign: "left",
@@ -149,7 +162,7 @@ const DerryTrip = () => {
           ))}
         </div>
 
-        <div className="bg-gray-50 p-6 rounded-lg text-gray-700 border rounded-lg p-4 mb-4 shadow-sm hover:shadow-md transition-shadow">
+        <div className="bg-white p-6 rounded-lg text-gray-700 border rounded-lg p-4 mb-4 shadow-sm hover:shadow-md transition-shadow">
           <h3 className="text-xl font-semibold mb-4">Total Driving Times</h3>
           <div className="space-y-2">
             <div>Day 1 Driving Time: ~4 hours</div>
